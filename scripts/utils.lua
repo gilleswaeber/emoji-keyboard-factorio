@@ -57,7 +57,7 @@ function utils.to_table(array)
 end
 
 function utils.get_order_info(key)
-  local noise_layer_name = "factoriolab-export/" .. key
+  local noise_layer_name = "emoji-keyboard-export/" .. key
   local noise_layer = game.noise_layer_prototypes[noise_layer_name]
   if noise_layer == nil then
     return nil, nil

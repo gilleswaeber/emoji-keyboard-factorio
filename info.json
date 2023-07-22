@@ -1,11 +1,11 @@
 {
-  "name": "factoriolab-export",
-  "version": "1.0.7",
-  "title": "FactorioLab Export",
-  "author": "ilbJanissary",
-  "contact": "https://github.com/factoriolab/factoriolab-export",
-  "homepage": "https://github.com/factoriolab/factoriolab-export",
-  "description": "Logs game data to a json file that can be used by FactorioLab (https://factoriolab.github.io).",
+  "name": "emoji-keyboard-export",
+  "version": "1.0.0",
+  "title": "Emoji Keyboard Export",
+  "author": "Styx2",
+  "contact": "https://github.com/gilleswaeber/emoji-keyboard-factorio",
+  "homepage": "https://github.com/gilleswaeber/emoji-keyboard-factorio",
+  "description": "Export Rich Text tags from Factorio to a JSON file and a sprite map for use with the Emoji Keyboard app.",
   "factorio_version": "1.1",
   "dependencies": ["base >= 1.1.59", "flib >= 0.10.1"]
 }

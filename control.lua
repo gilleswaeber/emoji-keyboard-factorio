@@ -4,15 +4,24 @@ local event = require("__flib__.event")
 local export_data = require("scripts/export-data")
 
 local function create_dictionaries()
-  for _, type in pairs({"fluid", "item", "item_group", "recipe", "technology"}) do
+  for _, type in pairs({
+    "fluid", "item", "item_group", "recipe", "technology", "virtual_signal",
+  }) do
     -- If the object's name doesn't have a translation, use its internal name as the translation
     local Names = dictionary.new(type .. "_names", true)
     for name, prototype in pairs(game[type .. "_prototypes"]) do
       Names:add(name, prototype.localised_name)
     end
   end
-  local GuiNames = dictionary.new("gui_technology_names", true)
-  GuiNames:add("research", {"gui-technology-progress.title"})
+  local EntityNames = dictionary.new("entity_names", true)
+  for name, prototype in pairs(game["entity_prototypes"]) do
+    if game.noise_layer_prototypes["emoji-keyboard-export/entity/" .. name] ~= nil then
+      EntityNames:add(name, prototype.localised_name)
+    end
+  end
+  local OtherNames = dictionary.new("other_names", true)
+  OtherNames:add("research", {"gui-technology-progress.title"})
+  OtherNames:add("crafting", {"gui.crafting"})
 end
 
 event.on_init(
@@ -24,13 +33,12 @@ event.on_init(
 
 event.on_player_created(
   function(e)
-    local player = game.players[e.player_index]
-    local player_settings = settings.get_player_settings(player)
-    if player_settings["factoriolab-export-disable"].value then
-      log("skipping data export")
+    if game.noise_layer_prototypes["emoji-keyboard-export/"] == nil then
+      -- Instrument mode is not enabled
       return
     end
-    player.print({"factoriolab-export.initialize"})
+    local player = game.players[e.player_index]
+    player.print({"emoji-keyboard-export.initialize"})
     dictionary.translate(player)
   end
 )

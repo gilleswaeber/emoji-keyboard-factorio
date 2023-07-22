@@ -1,5 +1,7 @@
 local noise_layers = {} -- Use fake noise layers to store sprite info
-local prefix = "factoriolab-export/"
+local prefix = "emoji-keyboard-export/"
+
+table.insert(noise_layers, {name = prefix, order = prefix, type = "noise-layer"})
 
 local icon_hash, icon_hash_id = {}, 0
 local function get_icon_hash(obj)
@@ -83,7 +85,7 @@ local function check_overflow(obj)
 end
 
 local function check_size(key, store_as)
-  raw = data.raw[key]
+  local raw = data.raw[key]
   for _, obj in pairs(raw) do
     local order = get_icon_hash(obj)
     local size = check_overflow(obj)
@@ -99,7 +101,7 @@ local function check_size(key, store_as)
 end
 
 local function check_size_alt(key)
-  raw = data.raw[key]
+  local raw = data.raw[key]
   for _, obj in pairs(raw) do
     local order = get_icon_hash(obj)
     if obj.icons and obj.icons[1].icon_size then
@@ -125,6 +127,18 @@ check_size("spidertron-remote", "item")
 check_size("tool", "item")
 check_size("fluid")
 check_size("recipe")
+check_size("virtual-signal")
+check_size("character", "entity")
+check_size("cliff", "entity")
+check_size("corpse", "entity")
+check_size("entity-ghost", "entity")
+check_size("item-entity", "entity")
+check_size("item-request-proxy", "entity")
+check_size("tile-ghost", "entity")
+check_size("tree", "entity")
+check_size("turret", "entity")
+check_size("unit", "entity")
+check_size("unit-spawner", "entity")
 check_size_alt("item-group")
 check_size_alt("technology")
 
